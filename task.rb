@@ -218,9 +218,9 @@ end
 
 class Item
   # 以下を修正して下さい
-
-  def initialize(name)
-    @name = name
+  attr_accessor  :name 
+  def initialize(books)
+    @name = books[:name]
   end
 end
 
