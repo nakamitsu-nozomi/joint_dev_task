@@ -165,8 +165,8 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  attr_accessor  :name, :age,:gender
-  def initialize(user)
+   attr_reader  :name, :age,:gender
+  def initialize(**user)
     @name =user[:name]
     @age = user[:age]
     @gender= user[:gender]
@@ -193,16 +193,16 @@ end
 
 class UserQ18
   # 以下に回答を記載
-  attr_accessor  :name, :age
-  def initialize(user)
-    @name=user[:name]
-    @age=user[:age]
+  attr_reader  :name, :age
+  def initialize(name:,age:)
+    @name= name
+    @age= age
   end
   def introduce
     if age >=20
-      puts "こんにちは。#{name}と申します。よろしくお願い致します。"
+       "こんにちは。#{name}と申します。よろしくお願い致します。"
     else
-      puts "はいさいまいど〜。#{name}です！！！"
+       "はいさいまいど〜。#{name}です！！！"
     end 
   end 
 end
