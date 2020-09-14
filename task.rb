@@ -218,9 +218,9 @@ end
 
 class Item
   # 以下を修正して下さい
-  attr_accessor  :name 
-  def initialize(books)
-    @name = books[:name]
+  attr_reader  :name 
+  def initialize(name:)
+    @name = name
   end
 end
 
@@ -232,30 +232,33 @@ end
 
 class UserQ20
   # 以下に回答を記載
-  attr_accessor  :name,:age 
-  def initialize(user)
-    @name=user[:name]
-    @age=user[:age]
+  attr_reader  :name,:age 
+  def initialize(name:,age:)
+    @name=name
+    @age=age
   end 
 end
 
 class Zoo
   # 以下に回答を記載
-  attr_accessor  :name,:entry_fee
-  def initialize(zoo)
-    @name=zoo[:name]
-    @entry_fee=zoo[:entry_fee]
+  #  :name,:entry_fee
+  def initialize(name:,entry_fee:)
+    @name=name
+    @entry_fee=entry_fee
   end 
   def info_entry_fee(user)
-    if user.age<=5 
-      puts "#{user.name}さんの入場料金は#{entry_fee[:infant]}円です"
-    elsif user.age>=6 && user.age<=12
-       puts "#{user.name}さんの入場料金は#{entry_fee[:children]}です"
-    elsif  user.age>=65
-       puts "#{user.name}さんの入場料金は#{entry_fee[:senior]}です"
+    money=@entry_fee
+    case 
+    when user.age<=5
+         puts "#{user.name}さんの入場料金は#{money[:infant]}円です"
+    when user.age>=6 && user.age<=12
+       puts "#{user.name}さんの入場料金は#{money[:children]}です"
+    when  user.age>=65
+       puts "#{user.name}さんの入場料金は#{money[:senior]}です"
     else
-       puts "#{user.name}さんの入場料金は#{entry_fee[:adult]}です"
-    end    
+       puts "#{user.name}さんの入場料金は#{money[:adult]}です"
+    end       
+    
   end 
 
 end
