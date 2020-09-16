@@ -243,18 +243,23 @@ class Zoo
   def initialize(name:,entry_fee:)
     @name=name
     @entry_fee=entry_fee
+    @infant=entry_fee[:infant]
+    @children=entry_fee[:children]
+    @adult=entry_fee[:adult]
+    @senior=entry_fee[:senior]
+
   end 
   def info_entry_fee(user)
     money = 
-    case 
-    when user.age<=5
-      @entry_fee[:infant]
-    when user.age>=6 && user.age<=12
-      @entry_fee[:children]
-    when  user.age>=65
-      @entry_fee[:senior]
+    case user.age
+    when 0..5
+      @infant
+    when 6..12
+      @children
+    when  13..64
+      @adult
     else
-      @entry_fee[:adult]
+      @senior
     end    
        
     puts "#{user.name}さんの入場料金は#{money}です"   
